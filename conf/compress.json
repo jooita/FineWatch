@@ -1,0 +1,18 @@
+{
+    "Css": {
+        "SrcPath": "static/css",
+        "DistPath": "static/css",
+        "SrcURL": "static/css",
+        "DistURL": "static/css",
+        "Groups": {
+            "lib": {
+                "SourceFiles": [
+                    "font-awesome.min.css"
+                ],
+                "SkipFiles": [
+                    "font-awesome.min.css"
+                ]
+            }
+        }
+    }
+}
