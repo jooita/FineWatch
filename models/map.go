@@ -7,10 +7,9 @@ import (
 )
 
 type Map struct {
-	Id      int
-	Mapid   string `orm:"unique"`
+	Mapid   string `orm:"pk"`
 	Class   string
-	explain string
+	Explain string
 }
 
 func (this *Map) GetMap(mapid string) *Map {
@@ -23,9 +22,37 @@ func (this *Map) GetMap(mapid string) *Map {
 		fmt.Println("GetMap:", mapid, "- No result found.")
 	} else if err == orm.ErrMissPK {
 		fmt.Println("GetMap:", mapid, "- No primary key found.")
+	} else {
+		fmt.Println("GetMap:", mapinfo.Mapid, mapinfo.Class, mapinfo.Explain)
 	}
 
-	fmt.Println("GetMap:", mapinfo.Mapid)
-
 	return &mapinfo
+}
+
+func (this *Map) InsertMap() {
+
+	fmt.Println("Insert Map!")
+
+	o := orm.NewOrm()
+	o.Using("default")
+	for i := range mapids {
+		maps := Map{Mapid: mapids[i]}
+		switch {
+		case i < 3:
+			maps.Class = "assault"
+			break
+		case i < 6:
+			maps.Class = "control"
+			break
+		case i < 9:
+			maps.Class = "escort"
+			break
+		case i < 12:
+			maps.Class = "assaultEscort"
+		}
+		id, err := o.Insert(&maps)
+		if err == nil {
+			fmt.Println("Map ID :", id)
+		}
+	}
 }

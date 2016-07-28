@@ -18,3 +18,46 @@ create table `tb_character`
         `class` varchar(255) NOT NULL DEFAULT '' 
     );
 
+
+mmmmmmmmmmmmmm
+create table `tb_map` 
+    -- --------------------------------------------------
+    --  Table Structure for `FineWatch/models.Map`
+    -- --------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `tb_map` (
+        `mapid` varchar(255) NOT NULL PRIMARY KEY,
+        `class` varchar(255) NOT NULL DEFAULT '' ,
+        `explain` varchar(255) NOT NULL DEFAULT '' 
+    );
+
+create table `tb_character` 
+    -- --------------------------------------------------
+    --  Table Structure for `FineWatch/models.Character`
+    -- --------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `tb_character` (
+        `charid` varchar(255) NOT NULL PRIMARY KEY,
+        `class` varchar(255) NOT NULL DEFAULT '' ,
+        `explain` varchar(255) NOT NULL DEFAULT '' 
+    );
+
+create table `tb_map_list` 
+    -- --------------------------------------------------
+    --  Table Structure for `FineWatch/models.MapList`
+    -- --------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `tb_map_list` (
+        `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+        `map_id` varchar(255) NOT NULL,
+        `position` varchar(255),
+        `state` varchar(255),
+        `explain` varchar(255)
+    );
+
+create table `tb_chars_for_map` 
+    -- --------------------------------------------------
+    --  Table Structure for `FineWatch/models.CharsForMap`
+    -- --------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `tb_chars_for_map` (
+        `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+        `maplist_id` integer NOT NULL,
+        `charid_id` varchar(255) NOT NULL,
+       
