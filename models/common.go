@@ -13,7 +13,6 @@ var charids = []string{"genji", "maccree", "pharah", "reaper", "soldier_76", "tr
 func init() {
 	orm.RegisterModelWithPrefix("tb_", new(Map))
 	orm.RegisterModelWithPrefix("tb_", new(Character))
-	orm.RegisterModelWithPrefix("tb_", new(MapList))
 	orm.RegisterModelWithPrefix("tb_", new(CharsForMap))
 }
 

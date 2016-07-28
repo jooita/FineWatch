@@ -19,11 +19,8 @@ func (c *MapController) Index() {
 	//char
 	//new(models.Character).InsertChar()
 
-	//maplist
-	//new(models.MapList).InsertMapList()
-
 	//CharForMap
-	new(models.CharsForMap).InsertCharsForMap()
+	//new(models.CharsForMap).InsertCharsForMap()
 
 	c.TplName = "maps/index.html"
 }
@@ -31,7 +28,9 @@ func (c *MapController) Index() {
 func (c *MapController) Map() {
 
 	mapid := c.GetString("mapid")
+	new(models.CharsForMap).GetChars(mapid)
 	mapstruct := new(models.Map)
 	c.Data["Map"] = mapstruct.GetMap(mapid)
+
 	c.TplName = "maps/map.html"
 }

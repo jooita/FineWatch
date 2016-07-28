@@ -7,10 +7,12 @@ import (
 )
 
 type CharsForMap struct {
-	Id      int
-	Maplist *MapList   `orm:"rel(fk)"`
-	Charid  *Character `orm:"rel(fk)"`
-	Explain string     `orm:"null"`
+	Id       int
+	Map      *Map       `orm:"rel(fk)"`
+	Char     *Character `orm:"rel(fk)"`
+	Position string
+	Explain  string `orm:"null"`
+	Count    int    `orm:"default(0)"`
 }
 
 func (this *CharsForMap) GetChars(mapid string) orm.ParamsList {
@@ -19,26 +21,10 @@ func (this *CharsForMap) GetChars(mapid string) orm.ParamsList {
 	o := orm.NewOrm()
 	o.Using("default")
 
-	_, err := o.QueryTable(this).Filter("Maplist__Map__Mapid", mapid).ValuesFlat(&charids, "Charid")
+	_, err := o.QueryTable(this).Filter("Map__Mapid", mapid).ValuesFlat(&charids, "Char__Charid")
 	if err == nil {
-		fmt.Printf("%s 's Characters:", mapid)
-		fmt.Println(charids)
+		fmt.Printf("%s 's Characters: %v\n", mapid, charids)
 		return charids
-	}
-	return nil
-}
-
-func (this *CharsForMap) GetMaps() orm.ParamsList {
-	var maplists orm.ParamsList
-
-	o := orm.NewOrm()
-	o.Using("default")
-
-	_, err := o.QueryTable(this).ValuesFlat(&maplists, "Maplist")
-	if err == nil {
-		//fmt.Printf("%s", strings.Join(maplists, ", "))
-		fmt.Println(maplists)
-		return maplists
 	}
 	return nil
 }
@@ -50,69 +36,192 @@ func (this *CharsForMap) InsertCharsForMap() {
 	o := orm.NewOrm()
 	o.Using("default")
 
-	var cfm CharsForMap
-	var listid int
+	cfm := make(chan *CharsForMap, 100)
+
+	go func(cfm chan *CharsForMap) {
+		for {
+			id, err := o.Insert(<-cfm)
+			if err == nil {
+				fmt.Println("CharsForMap Insert :", id)
+			}
+		}
+	}(cfm)
+
+	var pos string
 
 	for i := range mapids { //order : offense:good,bad,normal / defense:good,bad,normal
-		listid = (6 * i) + 1
 
 		switch {
 		case i < 3: //Assault
-			// OFFENSE - GOOD
-			cfm = CharsForMap{Maplist: &MapList{Id: listid}, Charid: &Character{Charid: "dva"}, Explain: ""}
-			ErrHandle(o.Insert(&cfm))
-			// OFFENSE - BAD
-			listid++ //2,8,14
 
-			// OFFENSE - NORMAL
-			listid++ //3,9,15
-
-			// DEFENSE - GOOD
-			listid++ //4,10,16
-
-			// DEFENSE - BAD
-			listid++ //5,11,17
-
-			// DEFENSE - NORMAL
-			listid++ //6,12,18
-
-			if mapids[i] == "anubis" {
-				cfm = CharsForMap{Maplist: &MapList{Id: 3}, Charid: &Character{Charid: "ana"}, Explain: ""}
-				ErrHandle(o.Insert(&cfm))
+			///////////////COMMON
+			// OFFENSE
+			pos = "offense"
+			for _, ch := range []string{"pharah", "genji", "reaper"} {
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 			}
 
+			// DEFENSE
+			pos = "defense"
+			for _, ch := range []string{"bastion", "torbjorn", "reinhardt", "mei"} {
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+			}
+
+			switch mapids[i] {
+			case "anubis":
+				pos = "offense"
+				for _, ch := range []string{"zenyatta", "lucio", "dva", "winston"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"zarya"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "symmetra"}, Position: pos, Explain: "A 거점 한정"}
+				break
+			case "hanamura":
+				pos = "offense"
+				for _, ch := range []string{"tracer", "dva"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "symmetra"}, Position: pos, Explain: "B 거점 한정"}
+				pos = "defense"
+				for _, ch := range []string{"roadhog", "hanzo"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				break
+			case "volskaya":
+				pos = "offense"
+				for _, ch := range []string{"tracer", "reinhardt", "zarya", "lucio", "winston"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+
+				pos = "defense"
+				for _, ch := range []string{"hanzo", "soldier_76", "widowmaker", "zarya"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+			}
 			break
 		case i < 6: //Control
 
-			// OFFENSE - GOOD
-			// OFFENSE - BAD
-			listid++
-			cfm = CharsForMap{Maplist: &MapList{Id: listid}, Charid: &Character{Charid: "lucio"}, Explain: ""}
-			ErrHandle(o.Insert(&cfm))
-
-			// OFFENSE - NORMAL
-			listid++
-
-			// DEFENSE - GOOD
-			listid++
-
-			// DEFENSE - BAD
-			listid++
-
-			// DEFENSE - NORMAL
-			listid++
-
-			if mapids[i] == "nepal" {
-				cfm = CharsForMap{Maplist: &MapList{Id: 27}, Charid: &Character{Charid: "ana"}, Explain: ""}
-				ErrHandle(o.Insert(&cfm))
+			///////////////COMMON
+			// OFFENSE
+			pos = "offense"
+			for _, ch := range []string{"winston", "dva", "reaper", "lucio"} {
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 			}
 
+			switch mapids[i] {
+			case "ilios":
+				for _, ch := range []string{"maccree", "pharah", "soldier_76", "roadhog", "genji", "hanzo"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				break
+			case "nepal":
+				for _, ch := range []string{"reinhardt", "roadhog", "junkrat", "mei"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				break
+			case "lijiang":
+				for _, ch := range []string{"reinhardt", "pharah", "soldier_76", "junkrat", "mei"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+			}
 			break
 		case i < 9: //Escort
+
+			///////////////COMMON
+			// OFFENSE
+			pos = "offense"
+			for _, ch := range []string{"dva", "genji", "winston", "reaper"} {
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+			}
+
+			switch mapids[i] {
+			case "dorado":
+				pos = "offense"
+				for _, ch := range []string{"lucio", "maccree"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"reinhardt", "roadhog", "junkrat", "pharah"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "bastion"}, Position: pos, Explain: "경유지, 목적지 한정"}
+
+				break
+			case "route66":
+				pos = "offense"
+				for _, ch := range []string{"soldier_76", "reinhardt", "maccree", "pharah", "mercy"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"zarya", "maccree", "soldier_76", "symmetra", "mei", "junkrat", "mercy"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "bastion"}, Position: pos, Explain: "목적지 한정"}
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "torbjon"}, Position: pos, Explain: "목적지 한정"}
+				break
+			case "watchpoint_gibraltar":
+				pos = "offense"
+				for _, ch := range []string{"reinhardt", "soldier_76", "lucio"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"reinhardt", "roadhog", "zarya", "bastion", "widowmaker", "mercy"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+			}
 			break
 		case i < 12: //AssaultEscort
+
+			///////////////COMMON
+			// OFFENSE
+			pos = "offense"
+			for _, ch := range []string{"dva", "winston", "pharah"} {
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+			}
+			// DEFENSE
+			pos = "defense"
+			for _, ch := range []string{"bastion", "torbjorn"} {
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+			}
+
+			switch mapids[i] {
+			case "hollywood":
+				pos = "offense"
+				for _, ch := range []string{"junkrat", "maccree", "reaper", "roadhog"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"maccree", "symmetra", "reaper", "pharah"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				break
+			case "king's_row":
+				pos = "offense"
+				for _, ch := range []string{"junkrat", "genji", "tracer"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"widowmaker", "hanzo"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				break
+			case "numbani":
+				pos = "offense"
+				for _, ch := range []string{"reaper", "soldier_76", "genji", "maccree", "tracer", "reinhardt"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				pos = "defense"
+				for _, ch := range []string{"reinhardt", "widowmaker", "hanzo", "maccree", "junkrat", "mei"} {
+					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
+				}
+				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "symmetra"}, Position: pos, Explain: "거점 한정"}
+			}
+
 		} //switch
 
-	}
+	} //for
 
 }
