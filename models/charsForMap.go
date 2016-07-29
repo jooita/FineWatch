@@ -15,18 +15,30 @@ type CharsForMap struct {
 	Count    int    `orm:"default(0)"`
 }
 
-func (this *CharsForMap) GetChars(mapid string) orm.ParamsList {
-	var charids orm.ParamsList
-
+func (this *CharsForMap) GetCharsForMap(mapid string) []*CharsForMap {
+	var cfminfo []*CharsForMap
 	o := orm.NewOrm()
 	o.Using("default")
+	o.QueryTable(this).Filter("Map__Mapid", mapid).RelatedSel().All(&cfminfo)
 
-	_, err := o.QueryTable(this).Filter("Map__Mapid", mapid).ValuesFlat(&charids, "Char__Charid")
-	if err == nil {
-		fmt.Printf("%s 's Characters: %v\n", mapid, charids)
-		return charids
-	}
-	return nil
+	return cfminfo
+}
+
+func (this *CharsForMap) GetOf(mapid string) []*CharsForMap {
+	var cfminfo []*CharsForMap
+	o := orm.NewOrm()
+	o.Using("default")
+	o.QueryTable(this).Filter("Map__Mapid", mapid).Filter("Position", "offense").RelatedSel().All(&cfminfo)
+
+	return cfminfo
+}
+func (this *CharsForMap) GetDf(mapid string) []*CharsForMap {
+	var cfminfo []*CharsForMap
+	o := orm.NewOrm()
+	o.Using("default")
+	o.QueryTable(this).Filter("Map__Mapid", mapid).Filter("Position", "defense").RelatedSel().All(&cfminfo)
+
+	return cfminfo
 }
 
 func (this *CharsForMap) InsertCharsForMap() {

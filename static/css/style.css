@@ -16,7 +16,8 @@
 
 	body, input, select, textarea {
 		color: #555f66;
-		font-family: "FontAwesome";
+		//font-family: "Roboto", Helvetica, sans-serif;
+		font-family: "Courier New", monospace;
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 1.75em;
@@ -257,7 +258,8 @@
 			content: "";
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
+		//	font-family: FontAwesome;
+		font-family: "Courier New", monospace;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -323,7 +325,8 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
+		//		font-family: FontAwesome;
+		font-family: "Courier New", monospace;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;
@@ -424,7 +427,8 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
+		//	font-family: FontAwesome;
+		font-family: "Courier New", monospace;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;

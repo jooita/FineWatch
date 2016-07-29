@@ -5,9 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">				
-		<title>MAP</title>
+		<title>HERO</title>
 		
-		<link rel="stylesheet" href="/static/b/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/static/css/style.css">
 		<link rel="stylesheet" href="/static/css/skel.css">
 		<link rel="stylesheet" href="/static/css/style-xlarge.css">
@@ -47,15 +46,33 @@
 				</header>
 
 
-				<div class="container">
-					
-					<div class="row">
-						<div class="4u">
-							<section class="special">
-							<img src="/static/img/maps/{{$map.Class}}/{{$map.Mapid}}.jpg" alt="" />
-								</section>
-						</div>
-					</div>
+				<div class="container big">
+						<br><h3>OFFENSE</h3><br>
+                                        <div class="row">
+					{{range $chars := .Offense}}
+                                                <div style="margin-left:-3%;text-align: center;">
+<form name="char" action="/characters/char" method="get">
+<input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
+<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
+<br>{{$chars.Explain}}
+</form>
+                                                </div>
+					{{end}}
+                                        </div>
+						<br><br><h1>DEFENSE</h1><br>
+                                        <div class="row">
+					{{range $chars := .Defense}}
+                                                <div style="margin-left:-3%;text-align: center;">
+<form name="char" action="/characters/char" method="get">
+<input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
+<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
+<br>{{$chars.Explain}}
+</form>
+                                                </div>
+					{{end}}
+                                        </div>
+
+
 
 				</div>
 

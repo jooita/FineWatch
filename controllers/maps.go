@@ -28,9 +28,11 @@ func (c *MapController) Index() {
 func (c *MapController) Map() {
 
 	mapid := c.GetString("mapid")
-	new(models.CharsForMap).GetChars(mapid)
 	mapstruct := new(models.Map)
+	cfmstruct := new(models.CharsForMap)
 	c.Data["Map"] = mapstruct.GetMap(mapid)
+	c.Data["Offense"] = cfmstruct.GetOf(mapid)
+	c.Data["Defense"] = cfmstruct.GetDf(mapid)
 
 	c.TplName = "maps/map.html"
 }

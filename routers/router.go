@@ -11,4 +11,5 @@ func init() {
 	beego.Router("/characters", &controllers.CharController{}, "get:Index")
 
 	beego.Router("/maps/map", &controllers.MapController{}, "get:Map")
+	beego.Router("/characters/char", &controllers.CharController{}, "get:Char")
 }
