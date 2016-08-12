@@ -11,6 +11,11 @@ type CharController struct {
 }
 
 func (c *CharController) Index() {
+	class := []string{"offense", "defense", "tank", "support"}
+	charstruct := new(models.Character)
+	for _, v := range class {
+		c.Data[v] = charstruct.GetClassChar(v)
+	}
 	c.TplName = "characters/index.html"
 }
 

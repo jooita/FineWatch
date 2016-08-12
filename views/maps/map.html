@@ -9,8 +9,6 @@
 		
 		<link rel="stylesheet" href="/static/css/style.css">
 		<link rel="stylesheet" href="/static/css/skel.css">
-		<link rel="stylesheet" href="/static/css/style-xlarge.css">
-		<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
 
 		
 		<style>
@@ -42,40 +40,19 @@
 
 			<section class="wrapper style1">
 				<header class="major">
-					<h2>{{$map.Mapid}}</h2>
+					<class class="main">{{$map.KMapid}}</class>
 				</header>
 
 
 				<div class="container big">
-						<br><h3>OFFENSE</h3><br>
-                                        <div class="row">
-					{{range $chars := .Offense}}
                                                 <div style="margin-left:-3%;text-align: center;">
-<form name="char" action="/characters/char" method="get">
-<input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
-<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
-<br>{{$chars.Explain}}
+<form name="char" action="/maps/map" method="get">
+	<input type="hidden" name="mapid" value="{{$map.Mapid}}">
+<input type="image" class="image" src="/static/img/map_detail/{{$map.Class}}/{{$map.Mapid}}.png">
+{{$map.Explain}}
 </form>
                                                 </div>
-					{{end}}
                                         </div>
-						<br><br><h1>DEFENSE</h1><br>
-                                        <div class="row">
-					{{range $chars := .Defense}}
-                                                <div style="margin-left:-3%;text-align: center;">
-<form name="char" action="/characters/char" method="get">
-<input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
-<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
-<br>{{$chars.Explain}}
-</form>
-                                                </div>
-					{{end}}
-                                        </div>
-
-
-
-				</div>
-
 			</section>
 	</body>
 </html>

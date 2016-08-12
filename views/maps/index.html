@@ -41,209 +41,115 @@
 	<!--maps-->
 			<section id="two" class="wrapper style1">
 				<header class="major">
-					<h2>OverWatch Maps</h2>
+					<class class="main">OverWatch Maps</class>
 				</header>
 				<div class="container">
 
+<hr>
 					<div class="row" >
                                                 <div class="2u">
-					<h1 title="공격/수비">점령</h1> 
+					<class class="strong" title="공격/수비">거점 점령</class> 
 						</div>
 
-						<div class="3u">
-							<section class="special">
+					{{range $maps := .assault}}
+						<div class="3u" style="text-align:center;">
 	<br>
+<form name="map" action="/maps/charsformap" method="get">
+	<input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
+	{{$maps.KMapid}} <br><br>
+
+        <input type="submit" class="button alt" value="영웅" >
+</form>
 <form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="anubis">
-      <input type="image" src="static/img/maps/assault/anubis.jpg">
-
-
-							<!--	<a href="/maps/map" class="image"><img src="static/img/maps/assault/anubis.jpg" alt="" /></a>
-<--> <ul class="actions">
-	<br>
-<li><input type="submit" class="button alt" value="아누비스 신전" ></li>
+<input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="submit" class="button alt" value="지도" >
 </form>
 
-								</ul>
-							</section>
 						</div>
-						<div class="3u">
-							<section class="special">
-	<br>
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="hanamura">
-      <input type="image" src="static/img/maps/assault/hanamura.jpg">
-<ul class="actions">
-	<br>
-<li><input type="submit" class="button alt" value="하나무라" ></li>
-</form>
-								</ul>
-							</section>
-						</div>
-						<div class="3u">
-							<section class="special">
-	<br>
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="volskaya">
-      <input type="image" src="static/img/maps/assault/volskaya.jpg">
-<ul class="actions">
-	<br>
-<li><input type="submit" class="button alt" value="볼스카야 인더스트리" ></li>
-</form>
-								</ul>
-							</section>
-						</div>
+						{{end}}
 
-					</div>
+                                                </div>
 
+
+<hr>
                                         <div class="row" >
                                                 <div class="2u">
-                                        <h1 title="">쟁탈</h1> 
-							</div>
-                                                       
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>                                           
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="ilios">
-      <input type="image" src="static/img/maps/control/ilios.jpg">
-<ul class="actions">                                   
-        <br>                                           
-<li><input type="submit" class="button alt" value="일리오스" ></li>
-</form>
-                                                       
-                                                                </ul>
-                                                        </section>
-                                                </div> 
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>                                           
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="nepal">
-      <input type="image" src="static/img/maps/control/nepal.jpg">
-<ul class="actions">                                   
-        <br>                                           
-<li><input type="submit" class="button alt" value="네팔" ></li>
-</form>
-                                                                </ul>
-                                                        </section>
+                                        <class class="strong" title="공격">거점 쟁탈</class> 
                                                 </div>
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="lijiang">
-      <input type="image" src="static/img/maps/control/lijiang.jpg">
-<ul class="actions">
-        <br>
-<li><input type="submit" class="button alt" value="리장타워" ></li>
+                                                
+                                        {{range $maps := .control}}
+					<div class="3u" style="text-align:center;">
+        <br>                                    
+<form name="map" action="/maps/charsformap" method="get">
+        <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
+	{{$maps.KMapid}} <br><br>
+                                                        
+        <input type="submit" class="button alt" value="영웅" >
 </form>
-                                                                </ul>
-                                                        </section>
+<form name="map" action="/maps/map" method="get">
+<input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="submit" class="button alt" value="지도" >
+</form>                                         
+                                                
+                                                </div>
+                                                {{end}}
+                                                
                                                 </div>
 
-                                        </div>
 
-
-
+<hr>
                                         <div class="row" >
                                                 <div class="2u">
-                                        <h1 title="공격/수비">호위</h1>
-						</div>
-                                                       
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>                                           
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="dorado">
-      <input type="image" src="static/img/maps/escort/dorado.jpg">
-<ul class="actions">                                   
-        <br>                                           
-<li><input type="submit" class="button alt" value="도라도" ></li>
-</form>
-                                                       
-                                                                </ul>
-                                                        </section>
-                                                </div> 
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>                                           
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="route66">
-      <input type="image" src="static/img/maps/escort/route66.jpg">
-<ul class="actions">                                   
-        <br>                                           
-<li><input type="submit" class="button alt" value="66번 국도" ></li>
-</form>
-                                                                </ul>
-                                                        </section>
+                                        <class class="strong" title="공격/수비">화물 운송</class> 
                                                 </div>
-                                                <div class="3u">
-                                                        <section class="special">
+                                                
+                                        {{range $maps := .escort}}
+                                        <div class="3u" style="text-align:center;">
         <br>
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="watchpoint_gibraltar">
-      <input type="image" src="static/img/maps/escort/watchpoint_gibraltar.jpg">
-<ul class="actions">
-        <br>
-<li><input type="submit" class="button alt" value="감시기지: 지브롤터" ></li>
+<form name="map" action="/maps/charsformap" method="get">
+        <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
+	{{$maps.KMapid}} <br><br>
+
+        <input type="submit" class="button alt" value="영웅" >
 </form>
-                                                                </ul>
-                                                        </section>
+<form name="map" action="/maps/map" method="get">
+<input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="submit" class="button alt" value="지도" >
+</form> 
+                                                </div>
+                                                {{end}}
+                                                
                                                 </div>
 
-                                        </div>
-
+<hr>
                                         <div class="row" >
                                                 <div class="2u">
-                                        <h1 title="공격/수비">점령+호위</h1>
+                                        <class class="strong" title="공격/수비">점령 > 화물</class> 
                                                 </div>
+                                                
+                                        {{range $maps := .assaultEscort}}
+                                        <div class="3u" style="text-align:center;">
+        <br>
+<form name="map" action="/maps/charsformap" method="get">
+        <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
+	{{$maps.KMapid}} <br><br>
 
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="hollywood">
-      <input type="image" src="static/img/maps/assaultEscort/hollywood.jpg">
-<ul class="actions">
-        <br>
-<li><input type="submit" class="button alt" value="할리우드" ></li>
+        <input type="submit" class="button alt" value="영웅" >
 </form>
-
-                                                                </ul>
-                                                        </section>
-                                                </div>
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>
 <form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="king's_row">
-      <input type="image" src="static/img/maps/assaultEscort/king's_row.jpg">
-<ul class="actions">
-        <br>
-<li><input type="submit" class="button alt" value="왕의 길" ></li>
-</form>
-
-                                                                </ul>
-                                                        </section>
+<input type="hidden" name="mapid" value="{{$maps.Mapid}}">
+        <input type="submit" class="button alt" value="지도" >
+</form> 
                                                 </div>
-                                                <div class="3u">
-                                                        <section class="special">
-        <br>
-<form name="map" action="/maps/map" method="get">
-<input type="hidden" name="mapid" value="numbani">
-      <input type="image" src="static/img/maps/assaultEscort/numbani.jpg">
-<ul class="actions">
-        <br>
-<li><input type="submit" class="button alt" value="눔바니" ></li>
-</form>
-
-                                                                </ul>
-                                                        </section>
+                                                {{end}}
+                                                
                                                 </div>
 
 
-                                                </div>
 
 
 

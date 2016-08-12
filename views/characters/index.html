@@ -5,9 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">				
-		<title>GUIDE</title>
+		<title>MAP</title>
 		
-		<link rel="stylesheet" href="/static/b/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/static/css/style.css">
 		<link rel="stylesheet" href="/static/css/skel.css">
 		<link rel="stylesheet" href="/static/css/style-xlarge.css">
@@ -38,77 +37,111 @@
 			</header>
 
 
-	<!--menu-->
-			<section id="two" class="wrapper style2">
+	<!--maps-->
+			<section id="two" class="wrapper style1">
 				<header class="major">
-					<h2>OverWatch Map & Character Guide</h2>
-					<br><br><p>from beji</p>
+					<class class="main">OverWatch Characters</class>
 				</header>
-				<div class="container">
-					<div class="row">
-						<div class="6u">
-							<section class="special">
-								<a href="/maps" class="image fit"><img src="/static/img/maps.png" alt="" /></a>
-								<h3>Map</h3>
-							</section>
+				<div class="container big">
+
+<hr class="major">
+<class class="strong" title="OFFENSE">공격</class> 
+<hr>
+					<div class="row" >
+
+					{{range $chars := .offense}}
+						<div class="image icon">
+	<br>
+<form name="char" action="/characters/char" method="get">
+	<input type="hidden" name="charid" value="{{$chars.Charid}}">
+        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+</form>
+	<br>
+	<div class="icon name">
+	<img src="static/img/icons/class/offense_small.png" style="display: inline-block;">
+		{{$chars.KCharid}} </div>
+
+
 						</div>
-						<div class="6u">
-							<section class="special">
-								
-								<a href="/characters" class="image fit"><img src="/static/img/characters.png" alt="" /></a>
-								<h3>Character</h3>
-							</section>
-						</div>
-					</div>
+						{{end}}
+
+                                                </div>
+
+
+<hr class="major">
+					<class class="strong" title="DEFENSE">수비</class> 
+<hr>
+                                        <div class="row" >
+
+                                        {{range $chars := .defense}}
+                                                <div class="image icon">
+        <br>                                    
+<form name="char" action="/characters/char" method="get">
+        <input type="hidden" name="charid" value="{{$chars.Charid}}">
+        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<br>
+	<div class="icon name">
+	<img src="static/img/icons/class/defense_small.png" style="display: inline-block;">
+		{{$chars.KCharid}} </div>
+                                        
+</form>  
+                                                
+                                                </div>
+                                                {{end}}
+                                                
+                                                </div>
+
+
+<hr class="major">
+					<class class="strong" title="TANK">돌격</class> 
+<hr>
+                                        <div class="row" >
+
+                                        {{range $chars := .tank}}
+                                                <div class="image icon">
+        <br>                                    
+<form name="char" action="/characters/char" method="get">
+        <input type="hidden" name="charid" value="{{$chars.Charid}}">
+        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<br>
+	<div class="icon name">
+	<img src="static/img/icons/class/tank_small.png" style="display: inline-block;">
+		{{$chars.KCharid}} </div>
+                                        
+</form>  
+                                                </div>
+                                                {{end}}
+                                                
+                                                </div>
+
+<hr class="major">
+					<class class="strong" title="SUPPORT">지원</class> 
+<hr>
+                                        <div class="row" >
+
+                                        {{range $chars := .support}}
+                                                <div class="image icon">
+        <br>                                    
+<form name="char" action="/characters/char" method="get">
+        <input type="hidden" name="charid" value="{{$chars.Charid}}">
+        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<br>
+	<div class="icon name">
+	<img src="static/img/icons/class/support_small.png" style="display: inline-block;">
+		{{$chars.KCharid}} </div>
+                                        
+</form>  
+                                                </div>
+                                                {{end}}
+                                                
+                                                </div>
+
+
+
+
+
 				</div>
 			</section>
-
-					<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<div class="row double">
-						<div class="6u">
-							<div class="row collapse-at-2">
-								<div class="6u">
-									<h3>School</h3>
-									<ul class="alt">
-										<li><a href="#">Gwangju Gwang-Myeong elementary school</a></li>
-										<li><a href="#">Jang-Ann middle school</a></li>
-										<li><a href="#">YangYoung high school</a></li>
-										<li><a href="#">Hankuk University of Foreign Studies</a></li>
-									</ul>
-								</div>
-								<div class="6u">
-									<h3>Hobby</h3>
-									<ul class="alt">
-										<li><a href="#">Memo</a></li>
-										<li><a href="#">Watching American Drama</a></li>
-										<li><a href="#">Playing Game</a></li>
-										<li><a href="#">Exploring a famous restaurant</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="6u">
-							<h2>Ji-Woo Kang</h2>
-							<p style="font-family: NanumGothic">I’m a senior at Korea University of Foreign Studies. My major is computer engineering. I choose this major because I want to be a programmer since I was little. As for my personality, I am introverted who has a positive attitude. so I like to rest at home to relieve stress. When I’m taking a rest at home I watch TV dramas. I especially like American TV dramas including Big bang theory, Vampire diary, and New girl</p>
-							<ul class="icons">
-								<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-							</ul>
-						</div>
-					</div>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li>
-						<li>Language: GO</li>
-						<li>framework: Beego</li>
-					</ul>
-				</div>
-			</footer>
 	</body>
 </html>
 

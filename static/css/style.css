@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@import url(NanumGothic.css);
+@import url(koverwatch.css);
+@import url(bignoodletoo.css);
 @import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Roboto:500,300");
 
@@ -14,16 +17,21 @@
 		background: #fff;
 	}
 
-	body, input, select, textarea {
+	body, select, textarea, input {
+		font-family: "NanumGothic";
 		color: #555f66;
-		//font-family: "Roboto", Helvetica, sans-serif;
-		font-family: "Courier New", monospace;
 		font-size: 14pt;
 		font-weight: 300;
 		line-height: 1.75em;
 	}
 
+	div {
+		font-family: "KOverwatch";
+		font-style: italic;
+	}
+
 	a {
+		font-family: "KOverwatch";
 		color: #629DD1;
 		text-decoration: underline;
 	}
@@ -42,6 +50,8 @@
 	}
 
 	p {
+		font-family: "KOverwatch";
+		font-style: bold;
 		margin: 0 0 2em 0;
 	}
 
@@ -99,12 +109,15 @@
 	hr {
 		border: 0;
 		border-bottom: solid 1px rgba(144, 144, 144, 0.25);
-		margin: 3em 0;
+		margin: 2em 0;
 	}
 
 		hr.major {
-			margin: 2em 0 5em 0;
+			margin: 5em 0 2em 0;
+			border : thin solid rgba(0, 102, 255, 0.5);
+
 		}
+
 
 	blockquote {
 		border-left: solid 4px rgba(144, 144, 144, 0.25);
@@ -117,7 +130,6 @@
 		background: rgba(144, 144, 144, 0.075);
 		border-radius: 6px;
 		border: solid 1px rgba(144, 144, 144, 0.25);
-		font-family: "Courier New", monospace;
 		font-size: 0.9em;
 		margin: 0 0.25em;
 		padding: 0.25em 0.65em;
@@ -125,7 +137,6 @@
 
 	pre {
 		-webkit-overflow-scrolling: touch;
-		font-family: "Courier New", monospace;
 		font-size: 0.9em;
 		margin: 0 0 2em 0;
 		overflow-x: auto;
@@ -136,6 +147,55 @@
 			line-height: 1.75em;
 			padding: 1em 1.5em;
 		}
+
+	.detail {
+		font-size: 1.2em;
+		margin-top: 1em;
+	}
+
+
+	class {
+		font-family: KOverwatch;
+		font-size: 2em;
+                color: #333333;
+		font-style: italic;
+		text-align: center;
+	}
+
+		class.main{
+			font-size: 3.25em;
+                	color: #000000;
+		}
+
+		class.mainwt{
+			font-size: 5em;
+                	color: #ffffff;
+		}
+
+		class.strong{
+			font-size: 2em;
+                	color: #000099;
+		}
+
+		class.wt{
+                	color: #ffffff;
+			font-style: normal;
+		}
+
+		class.style2{
+			font-size: 3.25em;
+		}
+
+	.red {
+		font-family: KOverwatch;
+		color: #df2626;
+		font-size: 1.5em;
+	}
+
+		
+	.ow{
+		font-family: KOverwatch;
+	}
 
 	.align-left {
 		text-align: left;
@@ -181,6 +241,13 @@
 		line-height: 1.5em;
 	}
 
+	header.name {
+		text-align: center;
+		background-color: #ffffff;
+		margin : 4em 0 2em 5em;
+		width: 92%;
+	}
+
 	header.major {
 		text-align: center;
 		margin: 0 0 4em 0;
@@ -199,6 +266,7 @@
 
 	form {
 		margin: 0 0 2em 0;
+		display: inline;
 	}
 
 	label {
@@ -258,11 +326,9 @@
 			content: "";
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-		//	font-family: FontAwesome;
-		font-family: "Courier New", monospace;
 			font-style: normal;
 			font-weight: normal;
-			text-transform: none !important;
+			text-transform: none ;
 		}
 
 		.select-wrapper:before {
@@ -325,11 +391,9 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-		//		font-family: FontAwesome;
-		font-family: "Courier New", monospace;
 				font-style: normal;
 				font-weight: normal;
-				text-transform: none !important;
+				text-transform: none ;
 			}
 
 			input[type="checkbox"] + label:before,
@@ -371,27 +435,27 @@
 	}
 
 	::-webkit-input-placeholder {
-		color: #bbb !important;
+		color: #bbb ;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: #bbb !important;
+		color: #bbb ;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: #bbb !important;
+		color: #bbb ;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: #bbb !important;
+		color: #bbb ;
 		opacity: 1.0;
 	}
 
 	.formerize-placeholder {
-		color: #bbb !important;
+		color: #bbb ;
 		opacity: 1.0;
 	}
 
@@ -427,11 +491,9 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-		//	font-family: FontAwesome;
-		font-family: "Courier New", monospace;
 			font-style: normal;
 			font-weight: normal;
-			text-transform: none !important;
+			text-transform: none ;
 		}
 
 		.icon > .label {
@@ -483,6 +545,42 @@
 			margin: 0 0 2em 0;
 			width: 100%;
 		}
+	
+		.image.fit.rad{
+		border-radius: 7px;
+		border: 3px solid gold;
+                background-color: gold;
+		-moz-border-radius: 7px;
+	 	-khtml-border-radius: 7px;
+		 -webkit-border-radius: 7px;
+		}
+
+                .image.icon{
+			margin-left:0%;
+			text-align: center;
+                }
+
+                        .image.auto:hover {
+                                background-color: rgba(144, 144, 144, 0.075);
+                        }
+
+
+                .icon.name{
+			width: 100%;
+			background-color: rgba(44, 60, 130, 0.8);;
+			color: #ffffff;
+			font-family: "KOverwatch";
+			font-style: italic;
+			font-size: 2em;
+			position: relative;
+			top: -60px;
+			text-align: center;
+		}
+                        .icon.name:hover {
+                                background-color: #ffffff;
+				color: #000000;
+                        }
+
 
 			.image.fit img {
 				display: block;
@@ -686,6 +784,7 @@
 
 /* Button */
 
+
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
@@ -703,7 +802,7 @@
 		background-color: #192024;
 		border-radius: 6px;
 		border: 0;
-		color: #ffffff !important;
+		color: #ffffff ;
 		cursor: pointer;
 		display: inline-block;
 		font-weight: 300;
@@ -776,9 +875,9 @@
 		input[type="reset"].alt,
 		input[type="button"].alt,
 		.button.alt {
-			background-color: transparent;
+			background-color: #000000;
 			box-shadow: inset 0 0 0 1px rgba(144, 144, 144, 0.25);
-			color: #666f77 !important;
+			color: #ffffff ;
 		}
 
 			input[type="submit"].alt:hover,
@@ -807,7 +906,7 @@
 		input[type="button"].special,
 		.button.special {
 			background-color: #629DD1;
-			color: #ffffff !important;
+			color: #ffffff ;
 		}
 
 			input[type="submit"].special:hover,
@@ -831,9 +930,9 @@
 		input[type="button"]:disabled,
 		.button.disabled,
 		.button:disabled {
-			background-color: #555f66 !important;
+			background-color: #555f66 ;
 			box-shadow: inset 0 -0.15em 0 0 rgba(0, 0, 0, 0.15);
-			color: #fff !important;
+			color: #fff ;
 			cursor: default;
 			opacity: 0.25;
 		}
@@ -843,9 +942,29 @@
 	.wrapper {
 		padding: 6em 0 4em 0;
 	}
+		.wrapper.style3 {
+			background: #ffffff;
+			color: #555f66;
+		}
+		
+
+		.wrapper.style4 {
+			background: #ffffff;
+			color: #555f66;
+		}
+
+		.wrapper.style5 {
+			background: #ffffff;
+			color: #555f66;
+		}
+
+		.wrapper.style6 {
+			background: #ffffff;
+			color: #555f66;
+		}
 
 		.wrapper.style1 {
-			background: #fff;
+			background: #ffffff;
 			color: #555f66;
 		}
 
@@ -864,7 +983,7 @@
 
 			.wrapper.style2 .button.alt {
 				box-shadow: inset 0 0 0 1px rgba(144, 144, 144, 0.75);
-				color: #ffffff !important;
+				color: #ffffff ;
 			}
 
 				.wrapper.style2 .button.alt:hover {
@@ -1017,7 +1136,7 @@
 
 		#banner .button.alt {
 			box-shadow: inset 0 0 0 1px rgba(144, 144, 144, 0.75);
-			color: #ffffff !important;
+			color: #ffffff ;
 		}
 
 			#banner .button.alt:hover {

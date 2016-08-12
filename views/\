@@ -1,0 +1,67 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">				
+		<title>HERO</title>
+		
+		<link rel="stylesheet" href="/static/css/style.css">
+		<link rel="stylesheet" href="/static/css/skel.css">
+
+		
+		<style>
+		</style>
+	</head>
+
+	<body>
+	<!-- Header -->
+			<header id="header">
+				<h1><a href="/">Beji</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li>|</li>
+						<li><a href="/favorite">Favorite</a></li>
+						<li>|</li>
+						<li><a href="/link">Link</a></li>
+						<li>|</li>
+						<li><a href="/class">Class</a></li>
+						<li>|</li>
+						<li><a href="/login" class="button special">Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+	<!--maps-->
+
+			{{$char := .Char}}
+
+			<section class="wrapper style2">
+				<header class="name">
+					<br>
+					<class class="style2">{{$char.KCharid}}</class>
+					<br>
+				</header>
+
+
+				<div class="container big">
+                                        <div class="row">
+                                                <div class="6u">
+							<input type="image" class="image fit" src="/static/img/chars_full_body/{{$char.Charid}}.png">
+                                                </div>
+						<div class="6u" style="font-size: 1.5em; margin-top: 300px;">
+							NAME : {{$char.KCharid}} </br></br>
+							CLASS : {{$char.Class}} </br></br>
+							EXPLATIN : <stress>{{$char.Explain}}</stress> </br></br>
+                                                </div>
+                                        </div>
+
+				</div>
+
+			</section>
+	</body>
+</html>
+

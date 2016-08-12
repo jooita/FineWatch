@@ -1,0 +1,8 @@
+@font-face{
+        font-family:"KOverwatch";
+        src:url('../fonts/koverwatch.eot');
+        src: local(※),
+	url('../fonts/koverwatch.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/koverwatch.woff') format('woff');
+}
+

@@ -80,7 +80,7 @@ func (this *CharsForMap) InsertCharsForMap() {
 			}
 
 			switch mapids[i] {
-			case "anubis":
+			case "temple_of_anubis":
 				pos = "offense"
 				for _, ch := range []string{"zenyatta", "lucio", "dva", "winston"} {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
@@ -102,7 +102,7 @@ func (this *CharsForMap) InsertCharsForMap() {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 				}
 				break
-			case "volskaya":
+			case "volskaya_industries":
 				pos = "offense"
 				for _, ch := range []string{"tracer", "reinhardt", "zarya", "lucio", "winston"} {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
@@ -134,7 +134,7 @@ func (this *CharsForMap) InsertCharsForMap() {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 				}
 				break
-			case "lijiang":
+			case "lijiang_tower":
 				for _, ch := range []string{"reinhardt", "pharah", "soldier_76", "junkrat", "mei"} {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 				}
@@ -162,7 +162,7 @@ func (this *CharsForMap) InsertCharsForMap() {
 				cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: "bastion"}, Position: pos, Explain: "경유지, 목적지 한정"}
 
 				break
-			case "route66":
+			case "route_66":
 				pos = "offense"
 				for _, ch := range []string{"soldier_76", "reinhardt", "maccree", "pharah", "mercy"} {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}

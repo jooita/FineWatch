@@ -1,0 +1,92 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">				
+		<title>HERO</title>
+		
+		<link rel="stylesheet" href="/static/css/style.css">
+		<link rel="stylesheet" href="/static/css/skel.css">
+
+		
+		<style>
+		</style>
+	</head>
+
+	<body>
+	<!-- Header -->
+			<header id="header">
+				<h1><a href="/">Beji</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li>|</li>
+						<li><a href="/favorite">Favorite</a></li>
+						<li>|</li>
+						<li><a href="/link">Link</a></li>
+						<li>|</li>
+						<li><a href="/class">Class</a></li>
+						<li>|</li>
+						<li><a href="/login" class="button special">Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+	<!--maps-->
+				{{$map := .Map}}
+
+			<section class="wrapper style1">
+				<header class="major">
+					<class class="main">{{$map.KMapid}}</class>
+				</header>
+
+
+				<div class="container big">
+					<hr class="major">
+						<br><class class="strong">공격</class><br>
+					<hr>
+                                        <div class="row">
+					{{range $chars := .Offense}}
+                                                <div class="image icon">
+<form name="char" action="/characters/char" method="get">
+<input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
+<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
+</form>
+<div class="icon name">
+	<img src="/static/img/icons/class/{{$chars.Char.Class}}_small.png" style="display: inline-block;">
+{{$chars.Char.KCharid}}
+<p class="red">{{$chars.Explain}}</p>
+</div>
+                                                </div>
+					{{end}}
+                                        </div>
+					<hr class="major">
+						<br><class class="strong">수비</class><br>
+					<hr>
+                                        <div class="row">
+					{{range $chars := .Defense}}
+                                                <div class="image icon;">
+<form name="char" action="/characters/char" method="get">
+<input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
+<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
+</form>
+<div class="icon name">
+	<img src="/static/img/icons/class/{{$chars.Char.Class}}_small.png" style="display: inline-block;">
+{{$chars.Char.KCharid}}
+<p class="red">{{$chars.Explain}}</p>
+</div>
+                                                </div>
+					{{end}}
+                                        </div>
+
+
+
+				</div>
+
+			</section>
+	</body>
+</html>
+

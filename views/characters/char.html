@@ -9,8 +9,6 @@
 		
 		<link rel="stylesheet" href="/static/css/style.css">
 		<link rel="stylesheet" href="/static/css/skel.css">
-		<link rel="stylesheet" href="/static/css/style-xlarge.css">
-		<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
 
 		
 		<style>
@@ -41,22 +39,25 @@
 
 			{{$char := .Char}}
 
-			<section class="wrapper style1">
-				<header class="major">
-					<h2>{{$char.Charid}}</h2>
+			<section class="wrapper style2">
+				<header class="name">
+					<br>
+					<class class="style2">{{$char.KCharid}}</class>
+					<br>
 				</header>
 
 
 				<div class="container big">
                                         <div class="row">
-                                                <div class="3u">
-							<input type="image" class="image fit" src="/static/img/chars/{{$char.Class}}/{{$char.Charid}}.png">
+                                                <div class="2u">
+							<input type="image" class="image fit rad" src="/static/img/chars_face/{{$char.Charid}}.png">
                                                 </div>
-						<div class="6u" style="font-size: 1.5em;">
-							</br></br></br></br></br>
-							NAME : {{$char.Charid}} </br></br>
+                                                <div class="2u detail">
+							<p class="detail">
+							NAME : {{$char.KCharid}} </br></br>
 							CLASS : {{$char.Class}} </br></br>
-							EXPLATIN : {{$char.Explain}} </br></br>
+							EXPLATIN : <p class="red">{{$char.Explain}}</p> </br></br>
+							</p>
                                                 </div>
                                         </div>
 

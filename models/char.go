@@ -8,8 +8,26 @@ import (
 
 type Character struct {
 	Charid  string `orm:"pk"`
+	KCharid string
 	Class   string
 	Explain string
+}
+
+func (this *Character) GetAll() []*Character {
+	var chars []*Character
+	o := orm.NewOrm()
+	o.Using("default")
+	o.QueryTable(this).All(&chars)
+
+	return chars
+}
+func (this *Character) GetClassChar(class string) []*Character {
+	var chars []*Character
+	o := orm.NewOrm()
+	o.Using("default")
+	o.QueryTable(this).Filter("Class", class).All(&chars)
+
+	return chars
 }
 
 func (this *Character) GetChar(charid string) *Character {
@@ -36,7 +54,7 @@ func (this *Character) InsertChar() {
 	o := orm.NewOrm()
 	o.Using("default")
 	for i := range charids {
-		chars := Character{Charid: charids[i]}
+		chars := Character{Charid: charids[i], KCharid: kcharids[i]}
 		switch {
 		case i < 6:
 			chars.Class = "offense"

@@ -8,8 +8,27 @@ import (
 
 type Map struct {
 	Mapid   string `orm:"pk"`
+	KMapid  string
 	Class   string
 	Explain string
+}
+
+func (this *Map) GetAll() []*Map {
+	var maps []*Map
+	o := orm.NewOrm()
+	o.Using("default")
+	o.QueryTable(this).All(&maps)
+
+	return maps
+}
+
+func (this *Map) GetClassMap(class string) []*Map {
+	var maps []*Map
+	o := orm.NewOrm()
+	o.Using("default")
+	o.QueryTable(this).Filter("Class", class).All(&maps)
+
+	return maps
 }
 
 func (this *Map) GetMap(mapid string) *Map {
@@ -36,7 +55,7 @@ func (this *Map) InsertMap() {
 	o := orm.NewOrm()
 	o.Using("default")
 	for i := range mapids {
-		maps := Map{Mapid: mapids[i]}
+		maps := Map{Mapid: mapids[i], KMapid: kmapids[i]}
 		switch {
 		case i < 3:
 			maps.Class = "assault"
