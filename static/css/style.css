@@ -560,14 +560,18 @@
 			text-align: center;
                 }
 
+		.image.auto {
+		}
+
                         .image.auto:hover {
-                                background-color: rgba(144, 144, 144, 0.075);
+                                background-color: rgba(144, 144, 144, 0.25);
+				width: 120%;
                         }
 
 
                 .icon.name{
 			width: 100%;
-			background-color: rgba(44, 60, 130, 0.8);;
+			background-color: rgba(44, 60, 130, 0.8);
 			color: #ffffff;
 			font-family: "KOverwatch";
 			font-style: italic;
@@ -576,10 +580,6 @@
 			top: -60px;
 			text-align: center;
 		}
-                        .icon.name:hover {
-                                background-color: #ffffff;
-				color: #000000;
-                        }
 
 
 			.image.fit img {

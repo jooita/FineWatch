@@ -9,8 +9,6 @@
 		
 		<link rel="stylesheet" href="/static/css/style.css">
 		<link rel="stylesheet" href="/static/css/skel.css">
-		<link rel="stylesheet" href="/static/css/style-xlarge.css">
-		<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
 
 		
 		<style>
@@ -18,6 +16,20 @@
 	</head>
 
 	<body>
+	<script>
+	function hover_ch(arg){
+	var e = document.getElementById(arg);
+	e.style.backgroundColor = 'white';
+	e.style.color= 'black';
+	e.style.fontSize = '3em';
+	}
+	function normal_ch(arg){
+	var e = document.getElementById(arg);
+	e.style.backgroundColor = "rgba(44, 60, 130, 0.8)";
+	e.style.color= 'white';
+	e.style.fontSize = '2em';
+	}
+	</script>
 	<!-- Header -->
 			<header id="header">
 				<h1><a href="/">Beji</a></h1>
@@ -47,17 +59,17 @@
 <hr class="major">
 <class class="strong" title="OFFENSE">공격</class> 
 <hr>
-					<div class="row" >
+					<div class="row">
 
 					{{range $chars := .offense}}
 						<div class="image icon">
 	<br>
 <form name="char" action="/characters/char" method="get">
 	<input type="hidden" name="charid" value="{{$chars.Charid}}">
-        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<input type="image" class="image auto" onmouseover="hover_ch({{$chars.Charid}})" onmouseout="normal_ch({{$chars.Charid}})" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
 </form>
 	<br>
-	<div class="icon name">
+	<div class="icon name" id="{{$chars.Charid}}">
 	<img src="static/img/icons/class/offense_small.png" style="display: inline-block;">
 		{{$chars.KCharid}} </div>
 
@@ -78,9 +90,10 @@
         <br>                                    
 <form name="char" action="/characters/char" method="get">
         <input type="hidden" name="charid" value="{{$chars.Charid}}">
-        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<input type="image" class="image auto" onmouseover="hover_ch({{$chars.Charid}})" onmouseout="normal_ch({{$chars.Charid}})" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+</form>
 	<br>
-	<div class="icon name">
+	<div class="icon name" id="{{$chars.Charid}}">
 	<img src="static/img/icons/class/defense_small.png" style="display: inline-block;">
 		{{$chars.KCharid}} </div>
                                         
@@ -102,9 +115,10 @@
         <br>                                    
 <form name="char" action="/characters/char" method="get">
         <input type="hidden" name="charid" value="{{$chars.Charid}}">
-        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<input type="image" class="image auto" onmouseover="hover_ch({{$chars.Charid}})" onmouseout="normal_ch({{$chars.Charid}})" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+</form>
 	<br>
-	<div class="icon name">
+	<div class="icon name" id="{{$chars.Charid}}">
 	<img src="static/img/icons/class/tank_small.png" style="display: inline-block;">
 		{{$chars.KCharid}} </div>
                                         
@@ -124,9 +138,10 @@
         <br>                                    
 <form name="char" action="/characters/char" method="get">
         <input type="hidden" name="charid" value="{{$chars.Charid}}">
-        <input type="image" class="image auto" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+	<input type="image" class="image auto" onmouseover="hover_ch({{$chars.Charid}})" onmouseout="normal_ch({{$chars.Charid}})" src="static/img/chars/{{$chars.Class}}/{{$chars.Charid}}.png">
+</form>
 	<br>
-	<div class="icon name">
+	<div class="icon name" id="{{$chars.Charid}}">
 	<img src="static/img/icons/class/support_small.png" style="display: inline-block;">
 		{{$chars.KCharid}} </div>
                                         
@@ -135,9 +150,6 @@
                                                 {{end}}
                                                 
                                                 </div>
-
-
-
 
 
 				</div>
