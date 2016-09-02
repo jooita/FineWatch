@@ -54,14 +54,14 @@
 					{{range $maps := .assault}}
 						<div class="3u" style="text-align:center;">
 	<br>
-<form name="map" action="/maps/charsformap" method="get">
+<form class="btn" name="map" action="/maps/charsformap" method="get">
 	<input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
 	{{$maps.KMapid}} <br><br>
 
         <input type="submit" class="button alt" value="영웅" >
 </form>
-<form name="map" action="/maps/map" method="get">
+<form class="btn" name="map" action="/maps/map" method="get">
 <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="submit" class="button alt" value="지도" >
 </form>
@@ -81,14 +81,14 @@
                                         {{range $maps := .control}}
 					<div class="3u" style="text-align:center;">
         <br>                                    
-<form name="map" action="/maps/charsformap" method="get">
+<form class="btn" name="map" action="/maps/charsformap" method="get">
         <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
 	{{$maps.KMapid}} <br><br>
                                                         
         <input type="submit" class="button alt" value="영웅" >
 </form>
-<form name="map" action="/maps/map" method="get">
+<form class="btn" name="map" action="/maps/map" method="get">
 <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="submit" class="button alt" value="지도" >
 </form>                                         
@@ -108,14 +108,14 @@
                                         {{range $maps := .escort}}
                                         <div class="3u" style="text-align:center;">
         <br>
-<form name="map" action="/maps/charsformap" method="get">
+<form class="btn" name="map" action="/maps/charsformap" method="get">
         <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
 	{{$maps.KMapid}} <br><br>
 
         <input type="submit" class="button alt" value="영웅" >
 </form>
-<form name="map" action="/maps/map" method="get">
+<form class="btn" name="map" action="/maps/map" method="get">
 <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="submit" class="button alt" value="지도" >
 </form> 
@@ -133,14 +133,14 @@
                                         {{range $maps := .assaultEscort}}
                                         <div class="3u" style="text-align:center;">
         <br>
-<form name="map" action="/maps/charsformap" method="get">
+<form class="btn" name="map" action="/maps/charsformap" method="get">
         <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="image" class="image fit" src="static/img/maps/{{$maps.Class}}/{{$maps.Mapid}}.jpg">
 	{{$maps.KMapid}} <br><br>
 
         <input type="submit" class="button alt" value="영웅" >
 </form>
-<form name="map" action="/maps/map" method="get">
+<form class="btn" name="map" action="/maps/map" method="get">
 <input type="hidden" name="mapid" value="{{$maps.Mapid}}">
         <input type="submit" class="button alt" value="지도" >
 </form> 

@@ -1,0 +1,69 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">				
+		<title>HERO</title>
+		
+		<link rel="stylesheet" href="/static/css/style.css">
+		<link rel="stylesheet" href="/static/css/skel.css">
+
+		
+		<style>
+		</style>
+	</head>
+
+	<body>
+	<!-- Header -->
+			<header id="header">
+				<h1><a href="/">Beji</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li>|</li>
+						<li><a href="/favorite">Favorite</a></li>
+						<li>|</li>
+						<li><a href="/link">Link</a></li>
+						<li>|</li>
+						<li><a href="/class">Class</a></li>
+						<li>|</li>
+						<li><a href="/login" class="button special">Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+	<!--maps-->
+
+			{{$p := .Profile}}
+
+			<section class="wrapper style2">
+				<header class="name">
+					<br>
+					<class class="style2">{{$p.Tagid}}</class>
+					<br>
+				</header>
+
+
+				<div class="container big">
+                                        <div class="row">
+                                                <div class="2u">
+							<input type="image" class="image fit rad" src="{{$p.Avatar}}">
+                                                </div>
+                                                <div class="2u detail">
+							<p class="detail">
+							NAME : {{$p.Tagid}} </br></br>
+							CLASS : {{$p.Level}} </br></br>
+							EXPLATIN : {{$p.Qwins}} <p class="red"></p> </br></br>
+							</p>
+                                                </div>
+                                        </div>
+
+				</div>
+
+			</section>
+	</body>
+</html>
+

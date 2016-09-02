@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">				
-		<title>HERO</title>
+		<title>MAP - CHARACTERS </title>
 		
 		<link rel="stylesheet" href="/static/css/style.css">
 		<link rel="stylesheet" href="/static/css/skel.css">
@@ -16,6 +16,23 @@
 	</head>
 
 	<body>
+        <script>
+        function hover_ch(arg){
+        var e = document.getElementById(arg);
+        e.style.backgroundColor = 'white';
+        e.style.color= 'black';
+        e.style.fontSize = '2.5em';
+	e.style.width = '120%';
+        }
+        function normal_ch(arg){
+        var e = document.getElementById(arg);
+        e.style.backgroundColor = "rgba(44, 60, 130, 0.8)";
+        e.style.color= 'white';
+        e.style.fontSize = '2em';
+	e.style.width = '100%';
+        }
+        </script>
+
 	<!-- Header -->
 			<header id="header">
 				<h1><a href="/">Beji</a></h1>
@@ -51,11 +68,11 @@
                                         <div class="row">
 					{{range $chars := .Offense}}
                                                 <div class="image icon">
-<form name="char" action="/characters/char" method="get">
+<form class="img" name="char" action="/characters/char" method="get">
 <input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
-<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
+<input type="image" class="image auto" onmouseover="hover_ch({{$chars.Char.Charid}})" onmouseout="normal_ch({{$chars.Char.Charid}})" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
 </form>
-<div class="icon name">
+<div class="icon name" id="{{$chars.Char.Charid}}">
 	<img src="/static/img/icons/class/{{$chars.Char.Class}}_small.png" style="display: inline-block;">
 {{$chars.Char.KCharid}}
 <p class="red">{{$chars.Explain}}</p>
@@ -69,11 +86,11 @@
                                         <div class="row">
 					{{range $chars := .Defense}}
                                                 <div class="image icon;">
-<form name="char" action="/characters/char" method="get">
+<form class="img" name="char" action="/characters/char" method="get">
 <input type="hidden" name="charid" value="{{$chars.Char.Charid}}">
-<input type="image" class="image auto" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
+<input type="image" class="image auto" onmouseover="hover_ch({{$chars.Char.Charid}})" onmouseout="normal_ch({{$chars.Char.Charid}})" src="/static/img/chars/{{$chars.Char.Class}}/{{$chars.Char.Charid}}.png">
 </form>
-<div class="icon name">
+<div class="icon name" id="{{$chars.Char.Charid}}">
 	<img src="/static/img/icons/class/{{$chars.Char.Class}}_small.png" style="display: inline-block;">
 {{$chars.Char.KCharid}}
 <p class="red">{{$chars.Explain}}</p>

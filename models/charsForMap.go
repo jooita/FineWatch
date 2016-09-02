@@ -82,7 +82,7 @@ func (this *CharsForMap) InsertCharsForMap() {
 			switch mapids[i] {
 			case "temple_of_anubis":
 				pos = "offense"
-				for _, ch := range []string{"zenyatta", "lucio", "dva", "winston"} {
+				for _, ch := range []string{"dva", "winston", "lucio", "zenyatta"} {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 				}
 				pos = "defense"
@@ -104,7 +104,7 @@ func (this *CharsForMap) InsertCharsForMap() {
 				break
 			case "volskaya_industries":
 				pos = "offense"
-				for _, ch := range []string{"tracer", "reinhardt", "zarya", "lucio", "winston"} {
+				for _, ch := range []string{"lucio", "winston", "tracer", "reinhardt", "zarya"} {
 					cfm <- &CharsForMap{Map: &Map{Mapid: mapids[i]}, Char: &Character{Charid: ch}, Position: pos, Explain: ""}
 				}
 
