@@ -37,27 +37,44 @@
 
 	<!--maps-->
 
-			{{$p := .Profile}}
+			{{$p := .Profile.Data}}
 
 			<section class="wrapper style2">
 				<header class="name">
+					<class class="strong">
+					Lv.{{$p.Level}}
+					</class>
 					<br>
-					<class class="style2">{{$p.Tagid}}</class>
-					<br>
+					<class class="style2">
+					{{$p.Username}}
+					</class>
 				</header>
 
 
-				<div class="container big">
+				<div class="container">
                                         <div class="row">
                                                 <div class="2u">
 							<input type="image" class="image fit rad" src="{{$p.Avatar}}">
                                                 </div>
                                                 <div class="2u detail">
 							<p class="detail">
-							NAME : {{$p.Tagid}} </br></br>
-							CLASS : {{$p.Level}} </br></br>
-							EXPLATIN : {{$p.Qwins}} <p class="red"></p> </br></br>
+							<p class="red"> 빠른 대전</p> </br></br>
+							레벨 : {{$p.Level}} </br></br>
+							승률 : {{$p.Games.Quick.Wins}}승 {{$p.Games.Quick.Lost}}패 </br></br>
+							플레이 시간 : {{$p.Playtime.Quick}} </br></br>
 							</p>
+                                                </div>
+                                                <div class="2u">
+							<input type="image" class="image fit rad" src="{{$p.LevelFrame}}">
+							<input type="image" class="image fit star" src="{{$p.Star}}">
+                                                </div>
+                                                <div class="2u detail">
+                                                        <p class="detail">
+                                                        <p class="red"> 경쟁전</p> </br></br>
+                                                        랭크 : {{$p.Competitive.Rank}} </br></br>
+                                                        승률 : {{$p.Games.Competitive.Wins}}승 {{$p.Games.Competitive.Lost}}패 </br></br>
+                                                        플레이 시간 : {{$p.Playtime.Competitive}} </br></br>
+                                                        </p>
                                                 </div>
                                         </div>
 

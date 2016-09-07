@@ -175,6 +175,7 @@
 		class.strong{
 			font-size: 2em;
                 	color: #000099;
+			font-style: normal;
 		}
 
 		class.wt{
@@ -185,6 +186,7 @@
 		class.style2{
 			font-size: 3.25em;
 		}
+
 
 		class.mid{
                 	color: #629DD1;
@@ -563,6 +565,11 @@
 		-moz-border-radius: 7px;
 	 	-khtml-border-radius: 7px;
 		 -webkit-border-radius: 7px;
+		}
+
+		.image.fit.star{
+		display: inline-block;
+		position: relative;
 		}
 
                 .image.icon{

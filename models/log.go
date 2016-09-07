@@ -3,19 +3,39 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 type Log struct {
-	Tagid   string
-	Level   float64
-	Avatar  string
-	Qwins   string
-	Qlost   float64
-	Qplayed float64
+	Data struct {
+		Username string `json:"username"`
+		Level    int    `json:"level"`
+		Games    struct {
+			Quick struct {
+				Wins   string `json:"wins"`
+				Lost   int    `json:"lost"`
+				Played string `json:"played"`
+			} `json:"quick"`
+			Competitive struct {
+				Wins   string `json:"wins"`
+				Lost   int    `json:"lost"`
+				Played string `json:"played"`
+			} `json:"competitive"`
+		} `json:"games"`
+		Playtime struct {
+			Quick       string `json:"quick"`
+			Competitive string `json:"competitive"`
+		} `json:"playtime"`
+		Avatar      string `json:"avatar"`
+		Competitive struct {
+			Rank    string `json:"rank"`
+			RankImg string `json:"rank_img"`
+		} `json:"competitive"`
+		LevelFrame string `json:"levelFrame"`
+		Star       string `json:"star"`
+	} `json:"data"`
 }
 
 func (this *Log) GetLog(tagid string, region string) *Log {
@@ -30,33 +50,11 @@ func (this *Log) GetLog(tagid string, region string) *Log {
 
 	defer resp.Body.Close()
 
-	logData, err := ioutil.ReadAll(resp.Body)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(string(logData))
-
-	var mapData interface{}
-
-	if err := json.Unmarshal(logData, &mapData); err != nil {
-
-		panic(err.Error())
-	}
-
-	data := mapData.(map[string]interface{})["data"].(map[string]interface{})
-
-	games := data["games"].(map[string]interface{})
-	g_quick := games["quick"].(map[string]interface{})
-	g_competitive := games["competitive"].(map[string]interface{})
-
-	playtime := data["playtime"].(map[string]interface{})
-
-	competitive := data["competitive"].(map[string]interface{})
-
 	var log *Log
-	log = &Log{Tagid: data["username"].(string), Level: data["level"].(float64), Avatar: data["avatar"].(string), Qwins: g_quick["wins"].(string)}
+
+	json.NewDecoder(resp.Body).Decode(&log)
+
+	fmt.Println(log)
 
 	return log
 }
