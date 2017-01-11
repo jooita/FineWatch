@@ -14,9 +14,6 @@ func (c *LogController) Index() {
 	tag := c.GetString("battletag")
 	region := c.GetString("region")
 
-	//tag = "베지밀#3657"
-	//region = "kr"
-
 	profilestruct := new(models.Log)
 	c.Data["Profile"] = profilestruct.GetLog(tag, region)
 
